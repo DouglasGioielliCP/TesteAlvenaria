@@ -7,29 +7,31 @@
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance Type=local:MainWindowModel}"
         Title="CP Eng. - Teste de Alvenaria" Height="450" Width="800">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="4*"/>
-        </Grid.ColumnDefinitions>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <Button Content="Escolher Arquivo" Command="{Binding Path=ChooseButton}" Margin="5"/>
-            <TextBox Grid.Row="1" Text="{Binding Path=FilePath, Mode=TwoWay}" Margin="5" IsReadOnly="True"/>
-            <ProgressBar Grid.Row="2" Margin="5" Maximum="100" Value="{Binding Path=Progress, Mode=TwoWay}" IsIndeterminate="{Binding Path=IsIndeterminate, Mode=TwoWay}"/>
-            <Button Grid.Row="3" Content="Processar" Command="{Binding Path=ProcessButton}" Margin="5"/>
-            <Button Grid.Row="4" Content="Mostrar Primeira Fiada" Command="{Binding Path=ShowFirstRowButton}" Margin="5"/>
-            <Button Grid.Row="5" Content="Mostrar Segunda Fiada" Command="{Binding Path=ShowSecondRowButton}" Margin="5"/>
-            <ListBox Grid.Row="6" Margin="5" ItemsSource="{Binding Path=WallList}" SelectedItem="{Binding Path=SelectedWall}" />
-        </Grid>
-        <Canvas Grid.Column="1" Name="cnv_preview" Margin="3" SizeChanged="cnv_preview_SizeChanged"/>
-    </Grid>
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*"/>
+			<ColumnDefinition Width="4*"/>
+		</Grid.ColumnDefinitions>
+		<!-- Adicionado um x:Name para o Grid -->
+		<Grid x:Name="contentGrid">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="*"/>
+			</Grid.RowDefinitions>
+			<Button Content="Escolher Arquivo" Command="{Binding Path=ChooseButton}" Margin="5"/>
+			<TextBox Grid.Row="1" Text="{Binding Path=FilePath, Mode=TwoWay}" Margin="5" IsReadOnly="True"/>
+			<ProgressBar Grid.Row="2" Margin="5" Maximum="100" Value="{Binding Path=Progress, Mode=TwoWay}" IsIndeterminate="{Binding Path=IsIndeterminate, Mode=TwoWay}"/>
+			<Button Grid.Row="3" Content="Processar" Command="{Binding Path=ProcessButton}" Margin="5"/>
+			<Button Grid.Row="4" Content="Mostrar Primeira Fiada" Command="{Binding Path=ShowFirstRowButton}" Margin="5"/>
+			<Button Grid.Row="5" Content="Mostrar Segunda Fiada" Command="{Binding Path=ShowSecondRowButton}" Margin="5"/>
+			<ListBox Grid.Row="6" Margin="5" ItemsSource="{Binding Path=WallList}" SelectedItem="{Binding Path=SelectedWall}" />
+		</Grid>
+		<Canvas Grid.Column="1" Name="cnv_preview" Margin="3" SizeChanged="cnv_preview_SizeChanged">
+		</Canvas>
+	</Grid>
 </Window>
