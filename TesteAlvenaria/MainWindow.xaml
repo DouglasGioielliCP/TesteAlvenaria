@@ -31,9 +31,7 @@
 			<Button Grid.Row="5" Content="Mostrar Segunda Fiada" Command="{Binding Path=ShowSecondRowButton}" Margin="5"/>
 			<ListBox Grid.Row="6" Margin="5" ItemsSource="{Binding Path=WallList}" SelectedItem="{Binding Path=SelectedWall}" />
 		</Grid>
-		<!-- Ainda tentando fazer esse quadrado aparecer -->
 		<Canvas Grid.Column="1" Name="cnv_preview" Margin="3" SizeChanged="cnv_preview_SizeChanged">
-			<Rectangle Width="100" Height="100" Fill="Blue" Canvas.Left="0" Canvas.Top="0"/>
 		</Canvas>
 	</Grid>
 </Window>

@@ -5,38 +5,30 @@ using System.Text;
 using System.Threading.Tasks;
 using TesteAlvenaria.Core;
 using TesteAlvenaria.Classes;
-using System.Windows;
-using System.Windows.Controls;
 
-namespace TesteAlvenaria.Teste
+namespace TesteAlvenaria.Teste;
+
+
+internal class MainTest
 {
-    internal class MainTest
+    public static List<IWallData> RunTest(string path)
     {
-        public static List<IWallData> RunTest(string path)
-        {
-            Application.Current.Dispatcher.Invoke(() =>
-            {
-                // Criar um novo TextBlock
-                TextBlock textBlock = new TextBlock();
-                textBlock.Text = "Olá, mundo!";
-                textBlock.Margin = new Thickness(5);
+        
+        IBlockData bloco1 = new BlockData(40, 0, 000, 0);
+        IBlockData bloco2 = new BlockData(40, 0, 040, 0);
 
-                // Localizar o Grid pelo nome
-                Grid grid = ((MainWindow)Application.Current.MainWindow).FindName("contentGrid") as Grid;
+        List<IBlockData> blockList = new List<IBlockData>();
 
-                // Verificar se o Grid foi encontrado
-                if (grid != null)
-                {
-                    // Adicionar o TextBlock ao Grid
-                    Grid.SetRow(textBlock, 7); // Define a linha em que o TextBlock será adicionado
-                    Grid.SetColumn(textBlock, 0); // Define a coluna em que o TextBlock será adicionado
-                    grid.Children.Add(textBlock); // Adiciona o TextBlock ao Grid
-                }
-            });
+        blockList.Add(bloco1);
+        blockList.Add(bloco2);
 
-            // Criar um novo objeto BlockData
-            IBlockData novoBloco = new BlockData(1, 10, 5, 3);
-            return new List<IWallData>();
-        }
+        IOpeningData open1 = new OpeningData(300, 200, 80, 0);
+
+        List<IOpeningData> openingList = new List<IOpeningData>();
+
+
+        IWallData wall1 = new WallData("Wall1", 0, 0, 90, 500, blockList, openingList);
+
+        return new List<IWallData> { wall1 };
     }
 }
