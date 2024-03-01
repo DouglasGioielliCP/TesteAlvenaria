@@ -78,12 +78,16 @@ namespace TesteAlvenaria
 
         private void DrawElevation(string wallName)
         {
-            var selectedWall = _model.Walls.Find(w => w.Name == wallName);
-            if (selectedWall == null)
-                return;
-            SetScaleElevation(selectedWall);
-            selectedWall.Blocks.ForEach(bl => DrawBlockElevation(bl));
-            selectedWall.Openings.ForEach(op => DrawOpeningElevation(op));
+            for(int i = 0; i <= 10; i++ )
+            {
+                var selectedWall = _model.Walls.Find(w => w.Name == wallName);
+                if (selectedWall == null)
+                    return;
+                SetScaleElevation(selectedWall);
+                selectedWall.Blocks.ForEach(bl => DrawBlockElevation(bl));
+                selectedWall.Openings.ForEach(op => DrawOpeningElevation(op));
+            }
+            
         }
 
         private void DrawOpeningElevation(IOpeningData op)
@@ -127,12 +131,12 @@ namespace TesteAlvenaria
             _posY = (h - _scale * (_maxY)) / 2.0;
         }
 
-        private void DrawFirstRow()
+        public void DrawFirstRow()
         {
             SetScaleFirstRow();
             var rects = new List<RectGeometry>();
             _model.Walls.ForEach(w => rects.Add(new RectGeometry(w.PointX, w.PointY, w.Length, 20, w.Angle)));
-            //rects.ForEach(r => DrawRect(r, 1));
+            rects.ForEach(r => DrawRect(r, 1));
             foreach (var wall in _model.Walls)
             {
                 var blocks = wall.Blocks.FindAll(bl => bl.Elevation == _model.ShowRow);
@@ -154,7 +158,7 @@ namespace TesteAlvenaria
                 return;
             posHole = UtilsGeometry.PolarPoint(posHole.Item1, posHole.Item2, 20, wall.Angle);
             rectHole = new RectGeometry(posHole.Item1, posHole.Item2, 14, 14, wall.Angle);
-            DrawRect(rectHole, 3);
+              DrawRect(rectHole, 3);
         }
 
         private void DrawOpeningFR(IWallData wall, IOpeningData op)
